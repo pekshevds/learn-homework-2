@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, date, time
+from datetime import datetime, timedelta, date
 """
 Домашнее задание №2
 
@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, date, time
 2. Превратите строку "01/01/20 12:10:03.234567" в объект datetime
 
 """
+
 
 def print_days():
     """
@@ -19,8 +20,9 @@ def print_days():
     yesterday = today - one_day
     thirty_days_ago = today - (one_day * 30)
 
-    print(f"Вчера: {yesterday}, сегодня: {today}, 30 дней назад: {thirty_days_ago}")
-    
+    print(f"Вчера: {yesterday}, сегодня: {today}, \
+        30 дней назад: {thirty_days_ago}")
+
 
 def str_2_datetime(date_string):
     """

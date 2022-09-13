@@ -11,25 +11,51 @@
 5. Сохраните результат в файл referat2.txt
 """
 
+
+def get_referat() -> str:
+    """
+    get file content
+    """
+    try:
+        with open('referat.txt', mode='r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        return ""
+
+
+def clear_text(text: str) -> str:
+    """
+    clear text from some characters
+    """
+    for ch in ".,!:«»\n":
+        if ch in text:
+            text.replace('.', '')
+    return text
+
+
+def output(length_of_referat: int, words_count: int):
+    print(f"Длинна строки: {length_of_referat} символов. \
+        Количество слов: {words_count}")
+
+
+def save_referat2(referat2: str):
+    with open('referat2.txt', mode='w', encoding='utf-8') as file:
+        file.write(referat2)
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    with open('referat.txt', mode='r', encoding='utf-8') as file:
-        referat = file.read()
-        length_of_string = len(referat)
-        text_without_some_symbols = referat.replace('.', '').replace(',', '').\
-            replace('!', '').replace(':', '').replace('«', '').replace('»', '').replace('\n', ' ')
+    referat = get_referat()
+    length_of_referat = len(referat)
+    referat_without_some_symbols = clear_text(referat)
+    words_count = len(referat_without_some_symbols.split(' '))
+    referat2 = referat.replace('.', '!')
+    output(length_of_referat, words_count)
+    save_referat2(referat2)
 
-        words_count = len(text_without_some_symbols.split(' '))
-        referat2 = referat.replace('.', '!')
-    
-    print('Слова из текста:', text_without_some_symbols)
-    print(f"Длинна строки: {length_of_string} символов. Количество слов: {words_count}")
-    
-    with open('referat2.txt', mode='w', encoding='utf-8') as file:
-        file.write(referat2)
 
 if __name__ == "__main__":
     main()
